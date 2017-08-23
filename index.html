@@ -1,120 +1,43 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	
-</head>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Crystals Collector</title>
 
-<body>
+    <!-- jQuery Link -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Game Logic -->
+    <script type="text/javascript" src="assets/javascript/crystalsCollector.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+  </head>
+  <body>
 
-	<H1>Crystals Collector!</H1>
-	<div id="disRandomNum"></div>
-	<div id="displayUserScore"></div>
-	<div>
-          <button id="button-1" class="button"><h1><img src="https://images-na.ssl-images-amazon.com/images/I/41UPKMkByFL._AC_SL230_.jpg"</h1></button>
-          <button id="button-2" class="button"><h1><img src="http://www.mysticfamiliar.com/library/crystals/images/rbb.JPG"></h1></button>
-          <button id="button-3" class="button"><h1><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Geschliffener_blauer_Saphir.jpg/170px-Geschliffener_blauer_Saphir.jpg"></h1></button>
-          <button id="button-4" class="button"><h1><img src="https://www.gemselect.com/thumbs/amethyst/Tgem-439482a.jpg"></h1></button>
-        
-     </div>
+    <h1 id="title">CrystalsCollector!</h1>
 
-     <div id="totalScore">
-     	
-     </div>
+    <div id="rules-area">
+      <h4>You will be given a random number at the start of the game.</h4>
+      <h4>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</h4>
+      <h4>You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.</h4>
+      <h4>The value of each crystal is hidden from you until you click on it.</h4>
+      <h4>Each time when the game starts, the game will change the values of each crystal</h4>
+    </div>
 
-     <div id="scoreBoard">
-     	
-     </div>
+    <div id="screen">
+      <!-- Random Number Display -->
+      <div id="random-area"></div>
+      <!-- Wins/Losses Display -->
+      <div id="win-area"></div>
+    </div>
 
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	
-	var buttonNum1 = Math.floor((Math.random() * 12) + 1);
-	var buttonNum2 = Math.floor((Math.random() * 12) + 1);
-	var buttonNum3 = Math.floor((Math.random() * 12) + 1);
-	var buttonNum4 = Math.floor((Math.random() * 12) + 1);
+    <div>
+      <!-- Crystals -->
+      <div id="crystal-area"></div>
+      <div id="score-title">Your total score is:</div>
+      <!-- Score Display -->
+      <div id="score-area"></div>
+    </div>
 
-
-	var compNum = Math.floor((Math.random() * 120) + 19);
-	
-	$("#disRandomNum").html("<h1> This is the target score " + compNum + "</h1>");
-
-	var wins = 0;
-	var losses = 0;
-	var userScore = 0;
-
-
-
-	
-
-
-
-	$("#button-1").on("click", function() {
-		// buttonNum1
-		userScore += buttonNum1;
-		console.log(userScore);
-		formatScoreBoard();
-		winCheck();
-	
-	});
-	
-
-	$("#button-2").on("click", function() {
-		userScore += buttonNum2;
-		console.log(buttonNum2);
-		formatScoreBoard();
-		winCheck();
-	
-	});
-
-	$("#button-3").on("click", function() {
-		userScore += buttonNum3;
-		console.log(userScore);
-		winCheck();
-		formatScoreBoard();
-	
-	});
-
-	$("#button-4").on("click", function() {
-		userScore = userScore + buttonNum4;
-		console.log(buttonNum4);
-		winCheck();
-		formatScoreBoard();
-	
-});
-	var winCheck = function() {
-		if(userScore === compNum) {
-			wins++;
-			resetGame();
-		}
-		else if(userScore > compNum) {
-			losses++;
-			resetGame();
-		}
-
-	}
-	var formatScoreBoard = function() {
-
-		$("#scoreBoard").html("<h1> User Score: " +  userScore +  "<br> number of wins:"+ wins + "<br> number of losses: " + losses +"</h1>");
-
-
-	}
-
-	var resetGame = function() {
-		compNum = Math.floor((Math.random() * 120) + 19); 
-		userScore = 0;
-		formatScoreBoard();
-		$("#disRandomNum").html("<h1> This is the target score " + compNum + "</h1>");
-
-	}
-
-	
-	formatScoreBoard();
-	
-		
-	</script>
-
-
-
-</body>
+  </body>
 </html>
